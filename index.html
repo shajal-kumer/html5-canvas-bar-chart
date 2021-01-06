@@ -1,0 +1,55 @@
+<html> 
+<body> 
+<canvas width="500" height="500" id="canvas"></canvas> 
+<script> 
+ 
+const data = [ 16, 68, 20, 30, 54 ]; 
+const colors = ["#4198D7", "#F5C767", "#7A61BA", "#39A767", "#E55759"]
+//get a reference to the canvas 
+const canvas = document.getElementById('canvas'); 
+ 
+//get a reference to the drawing context 
+const c = canvas.getContext('2d'); 
+ 
+//draw 
+c.fillStyle = "white"; 
+c.fillRect(0,0,500,500); 
+
+//draw data 
+
+for(let i=0; i<data.length; i++) { 
+    const dp = data[i]; 
+    c.fillStyle = colors[i]; 
+    c.fillRect(40 + i*100, 460 - dp*5, 50, dp*5); 
+} 
+
+//draw axis lines 
+c.fillStyle = "black"; 
+c.lineWidth = 2.0; 
+c.beginPath(); 
+c.moveTo(30,10); 
+c.lineTo(30,460); 
+c.moveTo(30,459);
+c.lineTo(490,459); 
+c.stroke(); 
+
+//draw text and vertical lines 
+c.fillStyle = "black"; 
+for(let i=0; i<6; i++) { 
+    c.textBaseline='middle';
+    c.fillText((5-i)*20,4, (i * 75)  +  84); 
+    c.beginPath(); 
+    c.moveTo(25,(i * 75)  +  84); 
+    c.lineTo(30,(i * 75)  +  84); 
+    c.stroke(); 
+} 
+
+const labels = ["JAN", "FEB", "MAR", "APR", "MAY"];
+for(let i=0; i<labels.length; i++) { 
+    c.textAlign = "center"
+    c.fillText(labels[i], i * 100 + 60, 480); 
+    c.stroke(); 
+} 
+</script> 
+</body> 
+</html> 
